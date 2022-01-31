@@ -42,16 +42,16 @@ namespace MVCprojekt.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<CategoryModel> CategoryModels { get; set; }
 
-        public DbSet<EmployeeModel> Employees { get; set; }
+        public DbSet<EmployeeModel> EmployeeModels { get; set; }
 
-        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderModel> OrderModels { get; set; }
 
-        public DbSet<OrderProductModel> OrderProducts { get; set; }
+        public DbSet<OrderProductModel> OrderProductModels { get; set; }
 
-        public DbSet<PositionModel> Positions { get; set; }
+        public DbSet<PositionModel> PositionModels { get; set; }
 
-        public DbSet<ProductModel> Products { get; set; }
+        public DbSet<ProductModel> ProductModels { get; set; }
     }
 }
