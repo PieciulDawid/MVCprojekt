@@ -22,3 +22,24 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.bg-purple {
+    background-color: #2E216E !important
+}
+
+a.bg-purple:focus, a.bg-purple:hover, button.bg-purple:focus, button.bg-purple:hover {
+    background-color: #2E216E !important
+}
+
+.zloty {
+    color: #EDB847
+}
+
+.text-purple {
+    color: #2E216E !important
+}
+
+.kolortla {
+    background-color: #2E216E !important;
+    color: aliceblue
+}

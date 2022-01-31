@@ -183,6 +183,10 @@
     <Compile Include="Migrations\202201312236160_Migracja4.Designer.cs">
       <DependentUpon>202201312236160_Migracja4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201312322083_Migracja5.cs" />
+    <Compile Include="Migrations\202201312322083_Migracja5.Designer.cs">
+      <DependentUpon>202201312322083_Migracja5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryModel.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201312236160_Migracja4.resx">
       <DependentUpon>202201312236160_Migracja4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201312322083_Migracja5.resx">
+      <DependentUpon>202201312322083_Migracja5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

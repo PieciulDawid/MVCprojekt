@@ -66,6 +66,14 @@ namespace MVCprojekt.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Imię")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Surname { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
