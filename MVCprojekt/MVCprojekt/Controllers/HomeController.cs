@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using MVCprojekt.Models;
@@ -26,7 +27,7 @@ namespace MVCprojekt.Controllers
         
         public ActionResult Index()
         {
-            var counter = DbContext.CounterModels.Find(2);
+            var counter = DbContext.CounterModels.AsQueryable().First();
 
             if (counter == null)
             {
@@ -38,8 +39,6 @@ namespace MVCprojekt.Controllers
             {
                 counter.Counter++;
             }
-            
-
             
             DbContext.SaveChanges();
             
