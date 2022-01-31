@@ -123,3 +123,6 @@ C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVC
 C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.csproj.CopyComplete
 C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.dll
 C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.pdb
+C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.Migrations.InitialCreate.resources
+C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.csproj.GenerateResource.cache
+C:\Users\pieci\Desktop\studia\semestr 5\MVC\MVCprojekt\MVCprojekt\MVCprojekt\MVCprojekt\obj\Debug\MVCprojekt.Migrations.Migracja1.resources

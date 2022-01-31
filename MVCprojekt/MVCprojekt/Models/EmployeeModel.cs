@@ -8,6 +8,7 @@ namespace MVCprojekt.Models
 {
     public class EmployeeModel
     {
+        [Key]
         [Display(Name = "Identyfikator użytkownika")]
         [Range(100000, 999999, ErrorMessage = "Podaj prawidłową wartość.")]
         [Required(ErrorMessage = "Musisz podać Identyfikator użytkownika.")]
