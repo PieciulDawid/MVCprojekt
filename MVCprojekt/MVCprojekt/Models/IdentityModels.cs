@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +17,17 @@ namespace MVCprojekt.Models
             // Dodaj tutaj niestandardowe oświadczenia użytkownika
             return userIdentity;
         }
+
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+
+        public string Address { get; set; }
+
+        public bool IsBlocked { get; set; }
+
+        public virtual ICollection<OrderModel> Orders { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
