@@ -18,7 +18,7 @@ namespace MVCprojekt.Models
 
         public bool IsDeleted { get; set; }
 
-        public virtual CategoryModel Category { get; set; }
+        public CategoryModel Category { get; set; }
 
         public virtual ICollection<OrderProductModel> Orders { get; set; }
     }

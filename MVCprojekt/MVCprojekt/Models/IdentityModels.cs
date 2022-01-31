@@ -24,6 +24,8 @@ namespace MVCprojekt.Models
 
         public string Address { get; set; }
 
+        public int PageSize { get; set; }
+
         public bool IsBlocked { get; set; }
 
         public virtual ICollection<OrderModel> Orders { get; set; }
