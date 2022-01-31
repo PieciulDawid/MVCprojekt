@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace MVCprojekt.Models
 {
@@ -13,8 +10,15 @@ namespace MVCprojekt.Models
 
         public string Name { set; get; }
 
-        public int AccesLevel { set; get; }
+        public AccessLevel AccessLevel { set; get; }
 
         public virtual ICollection<EmployeeModel> Employees { set; get; }
+    }
+
+    public enum AccessLevel
+    {
+        NonAdmin,
+        HeadAdmin,
+        MinorAdmin
     }
 }

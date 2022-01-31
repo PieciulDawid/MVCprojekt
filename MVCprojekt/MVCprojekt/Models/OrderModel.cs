@@ -11,22 +11,20 @@ namespace MVCprojekt.Models
 
         public DateTime OrderDate { get; set; }
 
-        public DateTime FinalizationDate { get; set; }
+        public DateTime? FinalizationDate { get; set; }
 
         public OrderState State { get; set; }
-
-        public virtual EmployeeModel Employee { get; set; }
 
         public virtual ApplicationUser Client { get; set; }
 
         public virtual ICollection<OrderProductModel> Products { get; set; }
+    }
 
-        public enum OrderState
-        {
-            New,
-            InProgress,
-            Finalized,
-            Cancelled
-        }
+    public enum OrderState
+    {
+        New,
+        InProgress,
+        Finalized,
+        Cancelled
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MVCprojekt.Models
 {
@@ -33,8 +29,5 @@ namespace MVCprojekt.Models
         public string Password { get; set; }
 
         public virtual PositionModel Position { get; set; }
-
-
-        public virtual ICollection<OrderModel> Orders { get; set; }
     }
 }
