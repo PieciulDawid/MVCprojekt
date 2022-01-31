@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -151,7 +148,11 @@ namespace MVCprojekt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var userName = model.Name + " " + model.Surname;
+                var user = new ApplicationUser
+                {
+                    UserName = userName, Email = model.Email, Name = model.Name, Surname = model.Surname, PageSize = 8
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

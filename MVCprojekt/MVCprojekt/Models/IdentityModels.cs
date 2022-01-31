@@ -55,5 +55,7 @@ namespace MVCprojekt.Models
         public DbSet<PositionModel> PositionModels { get; set; }
 
         public DbSet<ProductModel> ProductModels { get; set; }
+
+        public DbSet<CounterModel> CounterModels { get; set; }
     }
 }
