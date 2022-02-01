@@ -47,12 +47,9 @@ namespace MVCprojekt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductModel productModel)
         {
-            if (ModelState.IsValid)
-            {
-                db.ProductModels.Add(productModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            db.ProductModels.Add(productModel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
                 new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
