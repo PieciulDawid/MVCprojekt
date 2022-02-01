@@ -13,10 +13,23 @@ namespace MVCprojekt.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Product
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.AmountSortParm = sortOrder == "Amount" ? "amount_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var products = from s in db.ProductModels
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -39,6 +52,11 @@ namespace MVCprojekt.Controllers
                     products = products.OrderBy(s => s.Name);
                     break;
             }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(products.ToPagedList(pageNumber, pageSize));
+
             return View(products.ToList());
         }
 
