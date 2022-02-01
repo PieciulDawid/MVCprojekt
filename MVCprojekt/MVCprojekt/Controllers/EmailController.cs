@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace MVCprojekt.Controllers
 {
@@ -19,7 +20,8 @@ namespace MVCprojekt.Controllers
         public ActionResult Contact(string body)
         {
             //TODO tu wstawić email użytkownika naj jaki można odesłać odpoweidź
-            string subject = "Email użytkownika";
+            
+            string subject = User.Identity.Name;
             string useremail = "aspnetmvcprojekt@gmail.com";
             WebMail.Send(useremail, subject, body, null, null, null, true, null, null, null, null, null, null);
             ViewBag.msg = "Wysłano email";

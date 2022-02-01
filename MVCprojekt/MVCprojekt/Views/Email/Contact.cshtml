@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Kontakt";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
 <address>
@@ -23,7 +23,7 @@
     <div class="alert alert-success">@ViewBag.msg</div>
 }
 
-
+Masz jakieś uwagi? Napisz do nas!<br /><br />
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm())
