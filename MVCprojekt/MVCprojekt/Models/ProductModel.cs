@@ -39,23 +39,6 @@ namespace MVCprojekt.Models
         public int Category { get; set; }
     }
     
-    public class ModifyProductViewModel
-    {
-        public int ProductID { get; set; }
-        public string Name { get; set; }
-
-        public int Amount { get; set; }
-
-        public double Price { get; set; }
-
-        public string Description { get; set; }
-
-        [CategoryExistsAttribute(ErrorMessage = "Kategoria nie istnieje.")]
-        public int Category { get; set; }
-        
-        public bool IsDeleted { get; set; }
-    }
-    
     public class CategoryExistsAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)

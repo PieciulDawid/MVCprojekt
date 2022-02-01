@@ -58,6 +58,7 @@ namespace MVCprojekt.Controllers
                 productModel.IsDeleted = false;
                 productModel.Category = db.CategoryModels.Find(model.Category);
                 
+                
                 db.ProductModels.Add(productModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,22 +83,11 @@ namespace MVCprojekt.Controllers
             {
                 return HttpNotFound();
             }
-
-            var model = new ModifyProductViewModel
-            {
-                ProductID = productModel.ProductID,
-                Amount = productModel.Amount,
-                Description = productModel.Description,
-                Name = productModel.Name,
-                Price = productModel.Price,
-                IsDeleted = productModel.IsDeleted,
-                Category = productModel.Category.CategoryID
-            };
             
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
                 new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
 
-            return View(model);
+            return View(productModel);
         }
 
         // POST: Product/Edit/5
@@ -105,19 +95,10 @@ namespace MVCprojekt.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ModifyProductViewModel model)
+        public ActionResult Edit(ProductModel productModel)
         {
             if (ModelState.IsValid)
             {
-                var productModel = db.ProductModels.Find(model.ProductID);
-                
-                productModel.Amount = model.Amount;
-                productModel.Description = model.Description;
-                productModel.Name = model.Name;
-                productModel.Price = model.Price;
-                productModel.IsDeleted = model.IsDeleted;
-                productModel.Category = db.CategoryModels.Find(model.Category);
-                
                 db.Entry(productModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -126,7 +107,7 @@ namespace MVCprojekt.Controllers
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
                 new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
             
-            return View(model);
+            return View(productModel);
         }
 
         // GET: Product/Delete/5
