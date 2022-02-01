@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -11,8 +12,26 @@ namespace MVCprojekt.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var products = from s in db.ProductModels
+                           select s;
+/*            switch (sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }*/
             return View(db.ProductModels.ToList());
         }
 
@@ -85,6 +104,7 @@ namespace MVCprojekt.Controllers
 
             var model = new ModifyProductViewModel
             {
+                ProductID = productModel.ProductID,
                 Amount = productModel.Amount,
                 Description = productModel.Description,
                 Name = productModel.Name,

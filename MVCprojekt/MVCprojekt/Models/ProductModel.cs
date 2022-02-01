@@ -35,7 +35,6 @@ namespace MVCprojekt.Models
 
         public string Description { get; set; }
 
-        [CategoryExistsAttribute(ErrorMessage = "Kategoria nie istnieje.")]
         public int Category { get; set; }
     }
     
@@ -50,24 +49,8 @@ namespace MVCprojekt.Models
 
         public string Description { get; set; }
 
-        [CategoryExistsAttribute(ErrorMessage = "Kategoria nie istnieje.")]
         public int Category { get; set; }
         
         public bool IsDeleted { get; set; }
-    }
-    
-    public class CategoryExistsAttribute : ValidationAttribute
-    {
-        public override bool IsValid(object value)
-        {
-            if (value != null && (value is int || value is long || value is uint || value is ulong))
-            {
-                return HttpContext.Current.GetOwinContext().Get<ApplicationDbContext>()
-                    .CategoryModels
-                    .Find(value) != null;
-            }
-
-            return false;
-        }
     }
 }
