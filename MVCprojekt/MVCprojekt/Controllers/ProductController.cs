@@ -35,7 +35,7 @@ namespace MVCprojekt.Controllers
         public ActionResult Create()
         {
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
-                new { text = category.Name, value = category });
+                new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
             
             return View();
         }
@@ -55,7 +55,7 @@ namespace MVCprojekt.Controllers
             }
 
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
-                new { text = category.Name, value = category });
+                new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
             
             return View(productModel);
         }
