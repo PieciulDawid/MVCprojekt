@@ -69,9 +69,9 @@ namespace MVCprojekt.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
         [HttpPost]
-        public ActionResult PlaceOrder(List<CartProductViewModel> model)
+        public ActionResult Index(List<CartProductViewModel> model)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,6 @@ namespace MVCprojekt.Controllers
 
             return RedirectToAction("Index");
         }
-        
     }
 
     public static class CartUtil
