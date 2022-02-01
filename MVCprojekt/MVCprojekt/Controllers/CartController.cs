@@ -100,7 +100,7 @@ namespace MVCprojekt.Controllers
             body.Append("Zamówiono:\n");
             products.ForEach(item =>
             {
-                body.Append(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum + "\n");
+                body.AppendLine(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum + "\n");
             });
             var userEmail = User.Identity.Name;
             WebMail.Send(userEmail, "Dziękujemy za złożenie zamówienia", body.ToString());
