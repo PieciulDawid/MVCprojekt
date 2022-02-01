@@ -93,6 +93,9 @@ namespace MVCprojekt.Controllers
                 IsDeleted = productModel.IsDeleted,
                 Category = productModel.Category.CategoryID
             };
+            
+            ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
+                new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
 
             return View(model);
         }
@@ -119,6 +122,10 @@ namespace MVCprojekt.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
+            ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
+                new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
+            
             return View(model);
         }
 
