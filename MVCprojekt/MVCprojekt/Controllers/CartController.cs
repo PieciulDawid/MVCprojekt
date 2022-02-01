@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Text;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using MVCprojekt.Models;
 
@@ -9,26 +11,6 @@ namespace MVCprojekt.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         
-        // GET
-        // public ActionResult Index()
-        // {
-        //     List<int> cart;
-        //     if (Session["Cart"] == null)
-        //     {
-        //         cart = new List<int>();
-        //     }
-        //     else
-        //     {
-        //         cart = (List<int>) Session["Cart"];
-        //     }
-        //
-        //     cart.Add(cart.Count);
-        //     Session["Cart"] = cart;
-        //     
-        //     
-        //     return View();
-        // }
-
         public ActionResult Index()
         {
             var cart = CartUtil.GetCartDict(Session);
@@ -87,6 +69,26 @@ namespace MVCprojekt.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult PlaceOrder(List<CartProductViewModel> model)
+        {
+            if (ModelState.IsValid)
+            {
+                var body = new StringBuilder();
+                body.Append("Zamówiono:\n");
+                model.ForEach(item =>
+                {
+                    body.Append(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum + "\n");
+                });
+                var userEmail = User.Identity.Name;
+                WebMail.Send(userEmail, "Dziękujemy za złożenie zamówienia", body.ToString());
+                Session.Remove("Cart");
+                ViewBag.Ordered = "Zamówiono pomyślnie!";
+            }
+
+            return RedirectToAction("Index");
+        }
+        
     }
 
     public static class CartUtil

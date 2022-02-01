@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Helpers;
+﻿using System.Web.Helpers;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace MVCprojekt.Controllers
 {
@@ -13,16 +8,14 @@ namespace MVCprojekt.Controllers
         // GET: Email
         public ActionResult Contact()
         {
-
             return View();
         }
+        
         [HttpPost]
         public ActionResult Contact(string body)
         {
-            //TODO tu wstawić email użytkownika naj jaki można odesłać odpoweidź
-            
-            string subject = User.Identity.Name;
-            string useremail = "aspnetmvcprojekt@gmail.com";
+            var subject = User.Identity.Name;
+            var useremail = "aspnetmvcprojekt@gmail.com";
             WebMail.Send(useremail, subject, body, null, null, null, true, null, null, null, null, null, null);
             ViewBag.msg = "Wysłano email";
             return View();
