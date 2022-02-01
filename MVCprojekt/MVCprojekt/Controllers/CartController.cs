@@ -95,7 +95,7 @@ namespace MVCprojekt.Controllers
         {
             var quantity = itemQuantity ?? 1;
             if (cart.ContainsKey(itemId))
-                cart[itemId] = quantity + cart[itemId];
+                cart[itemId] += quantity;
             else
                 cart.Add(itemId, quantity);
         }
@@ -105,7 +105,7 @@ namespace MVCprojekt.Controllers
             var quantity = itemQuantity ?? 1;
             if (cart.ContainsKey(itemId))
             {
-                cart[itemId] = quantity - cart[itemId];
+                cart[itemId] -= quantity;
 
                 if (cart[itemId] <= 0) cart.Remove(itemId);
             }
