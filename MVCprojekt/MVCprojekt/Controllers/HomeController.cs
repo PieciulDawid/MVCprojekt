@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity.Owin;
 using MVCprojekt.Models;
 
 namespace MVCprojekt.Controllers
@@ -44,6 +41,19 @@ namespace MVCprojekt.Controllers
                 return HttpNotFound();
             }
             return View(productModel);
+        }
+
+        public ActionResult AddToCart(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var productModel = db.ProductModels.Find(id);
+
+            if (productModel == null) return HttpNotFound();
+
+            CartUtil.AddToCart(CartUtil.GetCartDict(Session), id.Value, 1);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -56,7 +56,7 @@
                         @if (Request.IsAuthenticated)
                         {
                             <div style="margin: 5px; float:right">
-                                <button class="btn btn-default">Dodaj do koszyka</button>
+                                <button class="btn btn-default">@Html.ActionLink("Dodaj do koszyka", "Details", new {id = item.ProductID})</button>
                             </div>
                         }
                     </div>
