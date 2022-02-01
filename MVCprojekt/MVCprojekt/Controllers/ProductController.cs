@@ -45,7 +45,7 @@ namespace MVCprojekt.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,Name,Amount,Price,Description,IsDeleted")] ProductModel productModel)
+        public ActionResult Create([Bind(Include = "ProductID,Name,Amount,Price,Description,Category,IsDeleted")] ProductModel productModel)
         {
             if (ModelState.IsValid)
             {
