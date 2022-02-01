@@ -30,8 +30,7 @@ else
             </th>
             <th></th>
         </tr>
-        </table>
-        <table class="table">
+
             @foreach (var item in Model)
             {
                 <tr>
@@ -48,9 +47,9 @@ else
                         @Html.DisplayFor(modelItem => item.Sum)
                     </td>
                     <td>
-                        @Html.ActionLink("+", "PlusOne", new { id = item.ProductID }) |
-                        @Html.ActionLink("-", "MinusOne", new { id = item.ProductID }) |
-                        @Html.ActionLink("Usuñ", "Remove", new { id = item.ProductID })
+                        @Html.ActionLink("Dodaj "+ item.Name, "PlusOne", new { id = item.ProductID }) |
+                        @Html.ActionLink("Usuñ " + item.Name, "MinusOne", new { id = item.ProductID }) |
+                        @Html.ActionLink("Usuñ wszystkie", "Remove", new { id = item.ProductID })
                     </td>
                 </tr>
             }
