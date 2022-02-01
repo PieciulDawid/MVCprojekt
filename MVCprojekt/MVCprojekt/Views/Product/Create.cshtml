@@ -1,4 +1,4 @@
-﻿@model MVCprojekt.Models.ProductModel
+﻿@model MVCprojekt.Models.AddProductViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -52,16 +52,6 @@
             <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Category, (List<SelectListItem>)ViewBag.Categories, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDeleted)
-                    @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 

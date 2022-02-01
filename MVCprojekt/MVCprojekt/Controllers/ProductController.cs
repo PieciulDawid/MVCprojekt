@@ -45,16 +45,29 @@ namespace MVCprojekt.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductModel productModel)
+        public ActionResult Create(AddProductViewModel model)
         {
-            db.ProductModels.Add(productModel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var productModel = db.ProductModels.Create();
+
+                productModel.Amount = model.Amount;
+                productModel.Description = model.Description;
+                productModel.Name = model.Name;
+                productModel.Price = model.Price;
+                productModel.IsDeleted = false;
+                productModel.Category = db.CategoryModels.Find(model.Category);
+                
+                db.ProductModels.Add(productModel);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
 
             ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
                 new SelectListItem { Text = category.Name, Value = category.CategoryID.ToString() });
             
-            return View(productModel);
+            return View(model);
         }
 
         // GET: Product/Edit/5
