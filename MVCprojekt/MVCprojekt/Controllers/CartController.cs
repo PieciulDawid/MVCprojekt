@@ -72,7 +72,7 @@ namespace MVCprojekt.Controllers
 
         public ActionResult PlaceOrder(List<CartProductViewModel> model)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 var body = new StringBuilder();
                 body.Append("Zamówiono:\n");
