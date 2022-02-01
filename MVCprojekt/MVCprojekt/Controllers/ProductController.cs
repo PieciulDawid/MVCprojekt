@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using MVCprojekt.Models;
 
@@ -38,6 +34,9 @@ namespace MVCprojekt.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
+                new { text = category.Name, value = category.CategoryID });
+            
             return View();
         }
 
