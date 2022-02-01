@@ -149,7 +149,7 @@ namespace MVCprojekt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userName = model.Name + " " + model.Surname;
+                var userName = model.Email;
                 var user = new ApplicationUser
                 {
                     UserName = userName, Email = model.Email, Name = model.Name, Surname = model.Surname, PageSize = 8

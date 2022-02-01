@@ -218,6 +218,7 @@
     <Content Include="Photos\fb.png" />
     <Content Include="Photos\ig.png" />
     <Content Include="Photos\Login.png" />
+    <Content Include="Photos\produkt.png" />
     <Content Include="Photos\Service.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

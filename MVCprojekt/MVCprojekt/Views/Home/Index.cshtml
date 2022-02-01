@@ -25,19 +25,27 @@
         margin: 30px;
         float: left
 ">
-            <div style=" float: left">
+            <div style=" float: left; margin-left: 10px" >
                 <h5>Nazwa: @item.Name</h5>
                 <h5>Cena: @item.Price</h5>
-                <h5>Kategoria: @item.Category.Name</h5>
+                <h5>Kategoria: @item.Category</h5>
             </div>
             <div style="float: right">
+                <div style="margin: auto auto;
+                    float: left;
+                    padding: 10px;">
+                    <img src="~/Photos/produkt.png" alt="" width="80" />
+                </div>
+            </div>
+            <div style="clear: both">
 
-                <div style="margin: 5px">
+                <div style="margin: 5px; float:left">
                     <button class="btn btn-default">Szczegóły</button>
                 </div>
-                <div style="margin: 5px">
+                <div style="margin: 5px; float:right">
                     <button class="btn btn-default">Dodaj do koszyka</button>
                 </div>
+
             </div>
 
         </div>
