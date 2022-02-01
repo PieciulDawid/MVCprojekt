@@ -70,9 +70,10 @@ namespace MVCprojekt.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public ActionResult PlaceOrder(List<CartProductViewModel> model)
         {
-            //if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var body = new StringBuilder();
                 body.Append("Zamówiono:\n");
