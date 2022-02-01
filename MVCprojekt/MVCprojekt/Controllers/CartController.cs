@@ -45,10 +45,10 @@ namespace MVCprojekt.Controllers
                     var tmp = new CartProductViewModel
                     {
                         ProductID = item.ProductID,
-                        Amount = pair.Value ?? 1,
+                        Amount = pair.Value,
                         Name = item.Name,
                         Price = item.Price,
-                        Sum = item.Price * pair.Value ?? 1
+                        Sum = item.Price * pair.Value
                     };
 
                     products.Add(tmp);
@@ -91,31 +91,38 @@ namespace MVCprojekt.Controllers
 
     public static class CartUtil
     {
-        public static void AddToCart(Dictionary<int, int?> cart, int itemId, int? itemQuantity)
+        public static void AddToCart(Dictionary<int, int> cart, int itemId, int? itemQuantity)
         {
             var quantity = itemQuantity ?? 1;
-            cart[itemId] = cart.ContainsKey(itemId) ? quantity : quantity + cart[itemId];
-        }
-
-        public static void RemoveFromCart(Dictionary<int, int?> cart, int itemId, int? itemQuantity)
-        {
-            var quantity = itemQuantity ?? 1;
-            cart[itemId] = cart.ContainsKey(itemId) ? 0 : quantity - cart[itemId];
-            if (cart[itemId] <= 0) cart.Remove(itemId);
-        }
-
-        public static void RemoveFromCart(Dictionary<int, int?> cart, int itemId)
-        {
-            cart.Remove(itemId);
-        }
-
-        public static Dictionary<int, int?> GetCartDict(HttpSessionStateBase session)
-        {
-            Dictionary<int, int?> cart;
-            if (session["Cart"] == null)
-                cart = new Dictionary<int, int?>();
+            if (cart.ContainsKey(itemId))
+                cart[itemId] = quantity + cart[itemId];
             else
-                cart = (Dictionary<int, int?>) session["Cart"];
+                cart.Add(itemId, quantity);
+        }
+
+        public static void RemoveFromCart(Dictionary<int, int> cart, int itemId, int? itemQuantity)
+        {
+            var quantity = itemQuantity ?? 1;
+            if (cart.ContainsKey(itemId))
+            {
+                cart[itemId] = quantity - cart[itemId];
+
+                if (cart[itemId] <= 0) cart.Remove(itemId);
+            }
+        }
+
+        public static void RemoveFromCart(Dictionary<int, int> cart, int itemId)
+        {
+            if (cart.ContainsKey(itemId)) cart.Remove(itemId);
+        }
+
+        public static Dictionary<int, int> GetCartDict(HttpSessionStateBase session)
+        {
+            Dictionary<int, int> cart;
+            if (session["Cart"] == null)
+                cart = new Dictionary<int, int>();
+            else
+                cart = (Dictionary<int, int>) session["Cart"];
 
             session["Cart"] = cart;
 
