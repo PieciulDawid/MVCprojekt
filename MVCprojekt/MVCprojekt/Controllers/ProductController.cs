@@ -56,8 +56,6 @@ namespace MVCprojekt.Controllers
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(products.ToPagedList(pageNumber, pageSize));
-
-            return View(products.ToList());
         }
 
         // GET: Product/Details/5
