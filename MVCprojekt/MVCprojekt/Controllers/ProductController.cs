@@ -82,7 +82,19 @@ namespace MVCprojekt.Controllers
             {
                 return HttpNotFound();
             }
-            return View(productModel);
+
+            var model = new ModifyProductViewModel
+            {
+                ProductID = productModel.ProductID,
+                Amount = productModel.Amount,
+                Description = productModel.Description,
+                Name = productModel.Name,
+                Price = productModel.Price,
+                IsDeleted = productModel.IsDeleted,
+                Category = productModel.Category.CategoryID
+            };
+
+            return View(model);
         }
 
         // POST: Product/Edit/5
@@ -90,15 +102,24 @@ namespace MVCprojekt.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,Name,Amount,Price,Description,IsDeleted")] ProductModel productModel)
+        public ActionResult Edit(ModifyProductViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var productModel = db.ProductModels.Find(model.ProductID);
+                
+                productModel.Amount = model.Amount;
+                productModel.Description = model.Description;
+                productModel.Name = model.Name;
+                productModel.Price = model.Price;
+                productModel.IsDeleted = model.IsDeleted;
+                productModel.Category = db.CategoryModels.Find(model.Category);
+                
                 db.Entry(productModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(productModel);
+            return View(model);
         }
 
         // GET: Product/Delete/5
