@@ -1,0 +1,12 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Koszyk";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Koszyk</h2>
+@foreach (int item in (IEnumerable<int>) Session["koszyk"])
+{
+    <p>item</p>
+}
