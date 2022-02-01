@@ -54,6 +54,8 @@ namespace MVCprojekt.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Categories = db.CategoryModels.ToList().ConvertAll(category =>
+                new { text = category.Name, value = category.CategoryID });
             return View(productModel);
         }
 
