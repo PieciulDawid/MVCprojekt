@@ -1,14 +1,3 @@
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/Microsoft.CodeAnalysis.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.Collections.Immutable.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.IO.FileSystem.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.IO.FileSystem.Primitives.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.Reflection.Metadata.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.Security.Cryptography.Primitives.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/System.ValueTuple.dll
-C:/Users/pieci/Desktop/studia/semestr 5/MVC/MVCprojekt/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/VBCSCompiler.exe
 /Users/dawiddmitruk/Desktop/Studia/MVCprojekt/MVCprojekt/MVCprojekt/bin/MVCprojekt.dll
 /Users/dawiddmitruk/Desktop/Studia/MVCprojekt/MVCprojekt/MVCprojekt/bin/MVCprojekt.pdb
 /Users/dawiddmitruk/Desktop/Studia/MVCprojekt/MVCprojekt/MVCprojekt/bin/roslyn/csc.exe

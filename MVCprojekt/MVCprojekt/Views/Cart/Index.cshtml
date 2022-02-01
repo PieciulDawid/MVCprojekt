@@ -6,30 +6,54 @@
 }
 @if (Model.Count == 0)
 {
-    @Html.ActionLink("Dodaj produkt", "PlusOne", new {id = 1004})
+    @Html.ActionLink("Dodaj produkt", "PlusOne", new { id = 1004 })
 }
 else
 {
-    foreach (var item in Model)
-    {
+
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sum)
-            </td>
-            <td>
-                @Html.ActionLink("+", "PlusOne", new {id = item.ProductID}) |
-                @Html.ActionLink("-", "MinusOne", new {id = item.ProductID}) |
-                @Html.ActionLink("Remove", "Remove", new {id = item.ProductID})
-            </td>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Iloœæ
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+                Suma
+            </th>
+            <th>
+                Akcje
+            </th>
+            <th></th>
         </tr>
-    }
-}
+        </table>
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sum)
+                    </td>
+                    <td>
+                        @Html.ActionLink("+", "PlusOne", new { id = item.ProductID }) |
+                        @Html.ActionLink("-", "MinusOne", new { id = item.ProductID }) |
+                        @Html.ActionLink("Usuñ", "Remove", new { id = item.ProductID })
+                    </td>
+                </tr>
+            }
+        </table>
+
+        }
