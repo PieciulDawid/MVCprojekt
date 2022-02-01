@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace MVCprojekt.Models
 {
@@ -52,5 +50,18 @@ namespace MVCprojekt.Models
         public int Category { get; set; }
         
         public bool IsDeleted { get; set; }
+    }
+
+    public class CartProductViewModel
+    {
+        public int ProductID { get; set; }
+
+        public string Name { get; set; }
+
+        public int Amount { get; set; }
+
+        public double Price { get; set; }
+
+        public double Sum { get; set; }
     }
 }

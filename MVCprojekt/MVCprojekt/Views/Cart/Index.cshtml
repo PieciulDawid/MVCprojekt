@@ -4,9 +4,9 @@
     ViewBag.Title = "Koszyk";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{ ((List<int>) Session["Cart"]).Add(100000);}
 <h2>Koszyk</h2>
-@foreach (int item in (IEnumerable<int>) Session["koszyk"])
+@foreach (var item in (IEnumerable<int>) Session["Cart"])
 {
     <p>@item</p>
 }
