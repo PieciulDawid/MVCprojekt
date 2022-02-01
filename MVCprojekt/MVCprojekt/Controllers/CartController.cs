@@ -69,23 +69,44 @@ namespace MVCprojekt.Controllers
 
             return RedirectToAction("Index");
         }
-        
-        [HttpPost]
-        public ActionResult Index(List<CartProductViewModel> model)
+
+        public ActionResult PlaceOrder()
         {
-            if (ModelState.IsValid)
+            var cart = CartUtil.GetCartDict(Session);
+
+            var products = new List<CartProductViewModel>();
+            foreach (var pair in cart)
             {
-                var body = new StringBuilder();
-                body.Append("Zamówiono:\n");
-                model.ForEach(item =>
+                if (pair.Value == 0) continue;
+
+                var item = db.ProductModels.Find(pair.Key);
+
+                if (item != null)
                 {
-                    body.Append(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum + "\n");
-                });
-                var userEmail = User.Identity.Name;
-                WebMail.Send(userEmail, "Dziękujemy za złożenie zamówienia", body.ToString());
-                Session.Remove("Cart");
-                ViewBag.Ordered = "Zamówiono pomyślnie!";
+                    var tmp = new CartProductViewModel
+                    {
+                        ProductID = item.ProductID,
+                        Amount = pair.Value,
+                        Name = item.Name,
+                        Price = item.Price,
+                        Sum = item.Price * pair.Value
+                    };
+
+                    products.Add(tmp);
+                }
             }
+
+            var body = new StringBuilder();
+            body.Append("Zamówiono:\n");
+            products.ForEach(item =>
+            {
+                body.Append(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum + "\n");
+            });
+            var userEmail = User.Identity.Name;
+            WebMail.Send(userEmail, "Dziękujemy za złożenie zamówienia", body.ToString());
+            Session.Remove("Cart");
+            ViewBag.Ordered = "Zamówiono pomyślnie!";
+           
 
             return RedirectToAction("Index");
         }
