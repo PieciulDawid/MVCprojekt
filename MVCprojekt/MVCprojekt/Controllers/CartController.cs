@@ -9,74 +9,107 @@ namespace MVCprojekt.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         
         // GET
+        // public ActionResult Index()
+        // {
+        //     List<int> cart;
+        //     if (Session["Cart"] == null)
+        //     {
+        //         cart = new List<int>();
+        //     }
+        //     else
+        //     {
+        //         cart = (List<int>) Session["Cart"];
+        //     }
+        //
+        //     cart.Add(cart.Count);
+        //     Session["Cart"] = cart;
+        //     
+        //     
+        //     return View();
+        // }
+
         public ActionResult Index()
         {
-            List<int> cart;
+            Dictionary<int, int?> cart;
             if (Session["Cart"] == null)
-            {
-                cart = new List<int>();
-            }
+                cart = new Dictionary<int, int?>();
             else
+                cart = (Dictionary<int, int?>) Session["Cart"];
+
+            var products = new List<CartProductViewModel>();
+            foreach (var pair in cart)
             {
-                cart = (List<int>) Session["Cart"];
+                if (pair.Value == 0) continue;
+
+                var item = db.ProductModels.Find(pair.Key);
+
+                if (item != null)
+                {
+                    var tmp = new CartProductViewModel
+                    {
+                        ProductID = item.ProductID,
+                        Amount = pair.Value ?? 1,
+                        Name = item.Name,
+                        Price = item.Price,
+                        Sum = item.Price * pair.Value ?? 1
+                    };
+
+                    products.Add(tmp);
+                }
             }
 
-            cart.Add(cart.Count);
-            Session["Cart"] = cart;
-            
-            
-            return View();
+            return View(products);
         }
 
-        //     public ActionResult Index()
-        //     {
-        //         Dictionary<int, int?> cart;
-        //         if (Session["Cart"] == null)
-        //         {
-        //             cart = new Dictionary<int, int?>();
-        //         }
-        //         else
-        //         {
-        //             cart = (Dictionary<int, int?>) Session["Cart"];
-        //         }
-        //
-        //         var products = new List<CartProductViewModel>();
-        //         cart.ForEach(pair =>
-        //         {
-        //             var item = db.ProductModels.Find(pair.Key);
-        //             
-        //             if (item != null)
-        //             {
-        //                 var tmp = new CartProductViewModel
-        //                 {
-        //                     ProductID = item.ProductID,
-        //                     Amount = item.Amount,
-        //                     Name = item.Name,
-        //                     Price = item.Price,
-        //                     Sum = item.Price * pair.Value ?? 1
-        //                 };
-        //             
-        //                 products.Add(tmp);
-        //             }
-        //         });
-        //
-        //         ViewBag.Products = products;
-        //         
-        //         return View();
-        //     }
-        // }
-        //
-        // public class CartUtil
-        // {
-        //     public static void AddToCart(Dictionary<int, int?> cart, int itemId, int? itemQuantity)
-        //     {
-        //         var quantity = itemQuantity ?? 1;
-        //         cart[itemId] = cart[itemId] == null ? quantity : quantity + cart[itemId];
-        //     }
-        //     
-        //     public static void RemoveFromCart(Dictionary<int, int?> cart, int itemId)
-        //     {
-        //         cart.Remove(itemId);
-        //     }
+        public ActionResult PlusOne(int id)
+        {
+            var cart = (Dictionary<int, int?>) Session["Cart"];
+            CartUtil.AddToCart(cart, id, 1);
+
+            Session["Cart"] = cart;
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult MinusOne(int id)
+        {
+            var cart = (Dictionary<int, int?>) Session["Cart"];
+            CartUtil.RemoveFromCart(cart, id, 1);
+
+            Session["Cart"] = cart;
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Remove(int id)
+        {
+            var cart = (Dictionary<int, int?>) Session["Cart"];
+            CartUtil.RemoveFromCart(cart, id);
+
+            Session["Cart"] = cart;
+
+            return RedirectToAction("Index");
+        }
+    }
+
+    public static class CartUtil
+    {
+        public static void AddToCart(Dictionary<int, int?> cart, int itemId, int? itemQuantity)
+        {
+            var quantity = itemQuantity ?? 1;
+            cart[itemId] = cart[itemId] == null ? quantity : quantity + cart[itemId];
+        }
+
+        public static void RemoveFromCart(Dictionary<int, int?> cart, int itemId, int? itemQuantity)
+        {
+            var quantity = itemQuantity ?? 1;
+            cart[itemId] = cart[itemId] == null ? 0 : quantity - cart[itemId];
+            if (cart[itemId] <= 0) cart.Remove(itemId);
+        }
+
+        public static void RemoveFromCart(Dictionary<int, int?> cart, int itemId)
+        {
+            cart.Remove(itemId);
+        }
     }
 }
