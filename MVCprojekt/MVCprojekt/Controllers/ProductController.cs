@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MVCprojekt.Models;
+using PagedList;
 
 namespace MVCprojekt.Controllers
 {
@@ -12,27 +13,33 @@ namespace MVCprojekt.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Product
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.AmountSortParm = sortOrder == "Amount" ? "amount_desc" : "";
             var products = from s in db.ProductModels
                            select s;
-/*            switch (sortOrder)
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name.Contains(searchString)
+                                       || s.Description.Contains(searchString));
+            }
+            switch (sortOrder)
             {
                 case "name_desc":
                     products = products.OrderByDescending(s => s.Name);
                     break;
-                case "Date":
-                    students = students.OrderBy(s => s.EnrollmentDate);
+                case "Amount":
+                    products = products.OrderBy(s => s.Amount);
                     break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                case "amount_desc":
+                    products = products.OrderByDescending(s => s.Amount);
                     break;
                 default:
-                    students = students.OrderBy(s => s.LastName);
+                    products = products.OrderBy(s => s.Name);
                     break;
-            }*/
-            return View(db.ProductModels.ToList());
+            }
+            return View(products.ToList());
         }
 
         // GET: Product/Details/5
