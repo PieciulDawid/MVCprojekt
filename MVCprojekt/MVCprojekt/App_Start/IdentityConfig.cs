@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -18,6 +19,10 @@ namespace MVCprojekt
     {
         public Task SendAsync(IdentityMessage message)
         {
+
+            string subject = "Test";
+            string useremail = "aspnetmvcprojekt@gmail.com";
+            WebMail.Send(useremail, subject, message.ToString(), null, null, null, true, null, null, null, null, null, null);
             // Dołącz tutaj usługę poczty e-mail, aby wysłać wiadomość e-mail.
             return Task.FromResult(0);
         }

@@ -5,9 +5,18 @@
 }
 
 <h2>@ViewBag.Title.</h2>
+<br /><br />
 <div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
+    <div classclass="col-md-4" style="border: 1px solid;
+        min-width: 400px;
+        border-radius: 15px;
+        border-color: darkgrey;
+        padding: 10px 20px;
+        box-shadow: 5px 5px 10px #2E2163;
+        margin-left: 30px;
+        float: left
+">
+        <section id="loginForm" style="min-width: 400px;">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -44,14 +53,20 @@
                 <p>
                     @Html.ActionLink("Zarejestruj się jako nowy użytkownik", "Register")
                 </p>
-                @* Włącz ten element po włączeniu potwierdzenia konta dla funkcji resetowania hasła
+@*                 Włącz ten element po włączeniu potwierdzenia konta dla funkcji resetowania hasła*@
                     <p>
                         @Html.ActionLink("Nie pamiętasz hasła?", "ForgotPassword")
-                    </p>*@
+                    </p>
             }
         </section>
+
     </div>
-    <div class="col-md-4">
+    <div style="margin: auto auto;
+        float: left;
+        padding:50px;">
+        <img src="~/Photos/Login.png" alt="" width="130" /> 
+    </div>
+    <div class="col-md-4" style="padding-top:50px; ">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>

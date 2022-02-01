@@ -3,21 +3,46 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Strona odwiedzona @Model.Counter razy</h1>
+<div class="jumbotron" style="margin: auto auto;
+        margin-top: 15px;
+        box-shadow: 5px 5px 10px #2E2163;
+">
+    <img src="~/Photos/baner.jpg" alt="" width="100%" />
+    <h4>Naszą stronę odwiedzono już @Model.Counter razy!!!</h4>
 </div>
 
 
+<div class="row" style="margin: auto;">
+    <div>
+        @foreach (var item in Model.ListOfProducts)
+        {
+        <div classclass="col-md-4" style="border: 1px solid;
+        min-width: 300px;
+        border-radius: 15px;
+        border-color: darkgrey;
+        padding: 10px 20px;
+        box-shadow: 5px 5px 10px #2E2163;
+        margin: 30px;
+        float: left
+">
+            <div style=" float: left">
+                <h5>Nazwa: @item.Name</h5>
+                <h5>Cena: @item.Price</h5>
+                <h5>Kategoria: @item.Category</h5>
+            </div>
+            <div style="float: right">
 
-<div>
-    @foreach(var item in Model.ListOfProducts)
-    {
-    <div style="border-style: dotted">
-        <h5>Nazwa: @item.Name</h5>
-        <h5>Cena: @item.Price</h5>
-        <h5>Kategoria: @item.Category</h5>
+                <div style="margin: 5px">
+                    <button class="btn btn-default">Szczegóły</button>
+                </div>
+                <div style="margin: 5px">
+                    <button class="btn btn-default">Dodaj do koszyka</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        }
     </div>
-    <br />
-    }
-
 </div>

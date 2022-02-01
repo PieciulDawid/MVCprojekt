@@ -212,6 +212,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Photos\3534124.png" />
+    <Content Include="Photos\baner.jpg" />
+    <Content Include="Photos\discord.svg" />
+    <Content Include="Photos\fb.png" />
+    <Content Include="Photos\ig.png" />
+    <Content Include="Photos\Login.png" />
+    <Content Include="Photos\Service.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

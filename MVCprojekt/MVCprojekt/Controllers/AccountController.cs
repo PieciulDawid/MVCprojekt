@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -191,6 +192,7 @@ namespace MVCprojekt.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+
             return View();
         }
 
@@ -212,10 +214,13 @@ namespace MVCprojekt.Controllers
 
                 // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771
                 // Wyślij wiadomość e-mail z tym łączem
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Resetuj hasło, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Resetuj hasło, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
+                string subject = "test";
+                string useremail = "aspnetmvcprojekt@gmail.com";
+                WebMail.Send(useremail, subject, code, null, null, null, true, null, null, null, null, null, null);
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // Dotarcie do tego miejsca wskazuje, że wystąpił błąd, wyświetl ponownie formularz
