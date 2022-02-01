@@ -193,6 +193,7 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CounterModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderModel.cs" />

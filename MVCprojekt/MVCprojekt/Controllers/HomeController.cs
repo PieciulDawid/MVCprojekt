@@ -27,22 +27,16 @@ namespace MVCprojekt.Controllers
         
         public ActionResult Index()
         {
-            var counter = DbContext.CounterModels.AsQueryable().First();
 
-            if (counter == null)
-            {
-                counter = DbContext.CounterModels.Create();
-                counter.Counter++;
-                DbContext.CounterModels.Add(counter);
-            }
-            else
-            {
-                counter.Counter++;
-            }
-            
-            DbContext.SaveChanges();
-            
-            return View(counter);
+
+
+
+            //Lista produktów
+
+            HomeIndexViewModel model = new HomeIndexViewModel();
+            model.CreateModel();
+
+            return View(model.CreateModel());
         }
 
         public ActionResult About()
