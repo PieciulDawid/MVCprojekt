@@ -97,10 +97,10 @@ namespace MVCprojekt.Controllers
             }
 
             var body = new StringBuilder();
-            body.Append("Zamówiono:\n");
+            body.AppendLine("Zamówiono:");
             products.ForEach(item =>
             {
-                body.AppendLine(item.Name + " " + item.Amount + " " + item.Price + " " + item.Sum);
+                body.AppendLine("Nazwa produktu: "+item.Name + "       Ilosć: " + item.Amount + "       Cena: " + item.Price + "zł       Suma: " + item.Sum+"zł");
             });
             var userEmail = User.Identity.Name;
             WebMail.Send(userEmail, "Dziękujemy za złożenie zamówienia", body.ToString());
